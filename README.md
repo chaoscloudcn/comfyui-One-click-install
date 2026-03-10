@@ -29,6 +29,7 @@
 如果安装中途出现下载错误，重新启动还是会自动继续安装
 
 ![图片描述](https://github.com/chaoscloudcn/comfyui-One-click-install/blob/main/ScreenShot_2026-03-10_142412_222.png?raw=true)
+![图片描述](https://github.com/chaoscloudcn/comfyui-One-click-install/blob/main/ScreenShot_2026-03-10_165123_684.png?raw=true)
 
 Update_ComfyUI.bat 是配套的更新comfyui安装脚本
 
