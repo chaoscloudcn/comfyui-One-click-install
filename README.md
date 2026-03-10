@@ -2,13 +2,15 @@
 
 === comfyui一键安装部署纯净版 === 混沌云制作 === 2026.3.10
 
-=== 需要定制LORA可以联系我 === 
+=== 需要定制LORA可以联系我 === 有偿服务
 
 === https://www.liblib.art/userpage/52322c5d27404cd28aea54b9641d5451/publish
 
 === 专注于电商落地服务 ===
 
-=== 视频短剧技术支持 ===
+=== 专注视频短剧AI技术支持 ===
+
+正在开发无限画布对接comfyui，有需要的可以联系企业定制开发，comfyui一对一培训
 
 -----------------------------------------------------------------
 
@@ -20,6 +22,6 @@
 
 ![图片描述](https://github.com/chaoscloudcn/comfyui-One-click-install/blob/main/ScreenShot_2026-03-10_142412_222.png?raw=true)
 
-有问题联系  微信 : chaosdoor  有偿服务
+有问题联系  微信 : chaosdoor  
 
 
