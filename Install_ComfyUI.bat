@@ -1,6 +1,6 @@
 @echo off&&cd /d %~dp0
 chcp 65001>nul
-set "version_title=ComfyUI 一键便携安装脚本 v1.6 (官方纯净无参版)"
+set "version_title=ComfyUI 一键便携安装脚本 v1.8 (官方原生管理器增强版)"
 Title %version_title%
 
 REM 1. 设置颜色变量
@@ -79,15 +79,21 @@ REM 7. 安装 ComfyUI 依赖 (多源策略优化)
 echo %green%[STEP]%reset% 正在安装 ComfyUI 核心依赖包...
 "%~dp0python\python.exe" -m uv pip install -r ComfyUI\requirements.txt --index-url https://pypi.org/simple --extra-index-url https://mirrors.aliyun.com/pypi/simple/ --index-strategy unsafe-best-match
 
-REM 8. 安装 ComfyUI 官方 Manager 依赖
+REM 8. 智能识别并安装 Manager 依赖
 echo %green%[STEP]%reset% 正在安装官方 Manager 依赖包...
-if exist "ComfyUI\manager_requirements.txt" (
+if exist "manager_requirements.txt" (
+    echo %green%[INFO]%reset% 在根目录找到 manager_requirements.txt，正在安装...
+    "%~dp0python\python.exe" -m uv pip install -r manager_requirements.txt --index-url https://pypi.org/simple --extra-index-url https://mirrors.aliyun.com/pypi/simple/ --index-strategy unsafe-best-match
+    REM 自动复制一份到 ComfyUI 目录里保持结构完整
+    copy /y "manager_requirements.txt" "ComfyUI\manager_requirements.txt" >nul
+) else if exist "ComfyUI\manager_requirements.txt" (
+    echo %green%[INFO]%reset% 在 ComfyUI 目录找到 manager_requirements.txt，正在安装...
     "%~dp0python\python.exe" -m uv pip install -r ComfyUI\manager_requirements.txt --index-url https://pypi.org/simple --extra-index-url https://mirrors.aliyun.com/pypi/simple/ --index-strategy unsafe-best-match
 ) else (
-    echo %warning%[WARN]%reset% 未在 ComfyUI 目录找到 manager_requirements.txt，跳过此步。
+    echo %warning%[WARN]%reset% 未找到 manager_requirements.txt，跳过此步。
 )
 
-REM 9. 生成启动脚本 (Run_ComfyUI.bat)
+REM 9. 生成带有官方管理器参数的启动脚本 (Run_ComfyUI.bat)
 set "bat_file_name=Run_ComfyUI.bat"
 echo %green%[STEP]%reset% 正在生成启动脚本 %bat_file_name% ...
 
@@ -106,7 +112,7 @@ echo set "PATH=%%PYTHON_DIR%%;%%PYTHON_DIR%%\Scripts;%%GIT_DIR%%\cmd;%%PATH%%">>
 echo.>> "%bat_file_name%"
 echo cd /d "%%COMFYUI_DIR%%">> "%bat_file_name%"
 echo echo 正在启动 ComfyUI...>> "%bat_file_name%"
-echo "%%PYTHON_DIR%%\python.exe" main.py --listen 127.0.0.1 --port 8188 --enable-cors-header "*">> "%bat_file_name%"
+echo "%%PYTHON_DIR%%\python.exe" -s main.py --windows-standalone-build --enable-manager --listen 127.0.0.1 --port 8188 --enable-cors-header "*">> "%bat_file_name%"
 echo pause>> "%bat_file_name%"
 
 REM 10. 完成提示
