@@ -26,6 +26,8 @@ ComfyUI 一键便携部署脚本 v2.7 (纯净基础底座版)
 
 这是一次重要的更新
 
+![图片描述](https://github.com/chaoscloudcn/comfyui-One-click-install/blob/main/ScreenShot_2026-03-23_122410_431.png?raw=true)
+
 
 -----------------------------------------------------------------
 
